@@ -20,9 +20,12 @@ public class Bullet : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		print($"Bullet: {other}Trigger Enter!");
 		if (other.CompareTag("Monster"))
 		{
 			print("Player shot the Monster!");
+			UIManager.Instance.killCount++;
+			Destroy(other.gameObject);
 		}
 
 		Destroy(gameObject);
