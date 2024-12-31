@@ -44480,6 +44480,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1088534118237959683, guid: 2d500fe57635f5942924f247b7cd6d17, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5268650215765851582, guid: 2d500fe57635f5942924f247b7cd6d17, type: 3}
       propertyPath: target
       value: 
@@ -44528,7 +44532,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_BullTank Bodyguard
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
