@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
 		if (other.CompareTag("Monster"))
 		{
 			print("Player shot the Monster!");
-			ScoreUI.Instance.killCount++;
+			ScoreUI.Instance.score++;
 			Destroy(other.gameObject);
 		}
 

@@ -13,6 +13,6 @@ public class GameSceneManager : SingletonManager<GameSceneManager>
 
 		Monster[] monsters = FindObjectsOfType<Monster>();
 		foreach (Monster monster in monsters) Destroy(monster.gameObject);
-		ScoreUI.Instance.killCount = 0;
+		ScoreUI.Instance.score = 0;
 	}
 }

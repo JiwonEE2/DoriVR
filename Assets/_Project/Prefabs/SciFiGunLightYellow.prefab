@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33f56c0864450c4b9c393ba26dbfecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killCount: 0
-  killCountText: {fileID: 6724502325041075517}
+  score: 0
+  scoreText: {fileID: 6724502325041075517}
 --- !u!1 &7791907190781413164
 GameObject:
   m_ObjectHideFlags: 0

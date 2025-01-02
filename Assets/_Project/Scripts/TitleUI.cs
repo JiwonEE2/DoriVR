@@ -17,10 +17,7 @@ public class TitleUI : MonoBehaviour
 	{
 		startButton.onClick.AddListener(StartButtonClick);
 		quitButton.onClick.AddListener(QuitButtonClick);
-	}
 
-	private void OnEnable()
-	{
 		if (GameSceneManager.Instance.isFirstGame)
 		{
 			welcomeText.gameObject.SetActive(true);
@@ -31,7 +28,7 @@ public class TitleUI : MonoBehaviour
 		{
 			welcomeText.gameObject.SetActive(false);
 			dieText.gameObject.SetActive(true);
-			scoreText.text = $"Score : {ScoreUI.Instance.killCount}";
+			scoreText.text = $"Score : {ScoreUI.Instance.score}";
 			scoreText.gameObject.SetActive(true);
 		}
 	}

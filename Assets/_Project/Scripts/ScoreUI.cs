@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class ScoreUI : SingletonManager<ScoreUI>
 {
-	public int killCount = 0;
-
-	public Text killCountText;
+	public int score = 0;
+	public Text scoreText;
 
 	private void Update()
 	{
-		killCountText.text = killCount.ToString();
+		scoreText.text = score.ToString();
 	}
 }
