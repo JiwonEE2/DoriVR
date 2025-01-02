@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : SingletonManager<UIManager>
+public class ScoreUI : SingletonManager<ScoreUI>
 {
 	public int killCount = 0;
 
