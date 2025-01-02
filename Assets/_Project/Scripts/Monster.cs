@@ -14,23 +14,24 @@ public class Monster : MonoBehaviour
 		Attack
 	}
 
-	public Transform target;
+	private Transform target;
 	private NavMeshAgent _agent;
 	private Animator _animator;
-	private State currentState = State.Move;
+	private State _currentState = State.Move;
 	public float attackRange = 2f;
 	public float attackCooldown = 2f;
-	private float lastAttackTime = 0f;
+	private float _lastAttackTime = 0f;
 
 	private void Awake()
 	{
 		_agent = GetComponent<NavMeshAgent>();
 		_animator = GetComponent<Animator>();
+		target = GameObject.Find("Main Camera").transform;
 	}
 
 	private void Update()
 	{
-		switch (currentState)
+		switch (_currentState)
 		{
 			case State.Idle:
 				Idle();
@@ -62,7 +63,7 @@ public class Monster : MonoBehaviour
 		float distanceToTarget = Vector3.Distance(transform.position, target.position);
 		if (distanceToTarget < attackRange)
 		{
-			currentState = State.Attack;
+			_currentState = State.Attack;
 			_agent.isStopped = true;
 		}
 	}
@@ -75,17 +76,17 @@ public class Monster : MonoBehaviour
 		_animator.SetBool("isAttacking", true);
 
 		// Check attackCooldown
-		if (Time.time - lastAttackTime >= attackCooldown)
+		if (Time.time - _lastAttackTime >= attackCooldown)
 		{
 			// Attack
 			print("Monster Attacked Player!");
-			lastAttackTime = Time.time;
+			_lastAttackTime = Time.time;
 		}
 
 		float distanceToTarget = Vector3.Distance(transform.position, target.position);
 		if (distanceToTarget > attackRange)
 		{
-			currentState = State.Move;
+			_currentState = State.Move;
 			_agent.isStopped = false;
 		}
 	}
