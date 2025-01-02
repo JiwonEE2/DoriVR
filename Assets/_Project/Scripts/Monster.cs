@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 public class Monster : MonoBehaviour
@@ -79,8 +80,8 @@ public class Monster : MonoBehaviour
 		if (Time.time - _lastAttackTime >= attackCooldown)
 		{
 			// Attack
-			print("Monster Attacked Player!");
 			_lastAttackTime = Time.time;
+			SceneManager.LoadScene("TitleScene");
 		}
 
 		float distanceToTarget = Vector3.Distance(transform.position, target.position);
