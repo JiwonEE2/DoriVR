@@ -28,7 +28,7 @@ public class TitleUI : MonoBehaviour
 		{
 			welcomeText.gameObject.SetActive(false);
 			dieText.gameObject.SetActive(true);
-			scoreText.text = $"Score : {ScoreUI.Instance.score}";
+			scoreText.text = $"Score : {GameUI.Instance.score}";
 			scoreText.gameObject.SetActive(true);
 		}
 	}

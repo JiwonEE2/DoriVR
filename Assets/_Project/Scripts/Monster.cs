@@ -81,7 +81,7 @@ public class Monster : MonoBehaviour
 		{
 			// Attack
 			_lastAttackTime = Time.time;
-			SceneManager.LoadScene("TitleScene");
+			GameUI.Instance.Attacked();
 		}
 
 		float distanceToTarget = Vector3.Distance(transform.position, target.position);
