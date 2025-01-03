@@ -10,33 +10,32 @@ public class Monster : MonoBehaviour
 {
 	private enum State
 	{
-		Idle,
 		Move,
 		Attack
 	}
 
-	private Transform target;
+	private Transform _target;
 	private NavMeshAgent _agent;
 	private Animator _animator;
 	private State _currentState = State.Move;
-	public float attackRange = 2f;
+	public float moveSpeed = 1f;
+	public float attackRange = 5f;
 	public float attackCooldown = 2f;
-	private float _lastAttackTime = 0f;
+	private float _attackTimer = 0f;
 
 	private void Awake()
 	{
 		_agent = GetComponent<NavMeshAgent>();
 		_animator = GetComponent<Animator>();
-		target = GameObject.Find("Main Camera").transform;
+		_target = GameObject.Find("Main Camera").transform;
+		_agent.speed = moveSpeed;
+		_attackTimer = attackCooldown;
 	}
 
 	private void Update()
 	{
 		switch (_currentState)
 		{
-			case State.Idle:
-				Idle();
-				break;
 			case State.Move:
 				Move();
 				break;
@@ -46,22 +45,18 @@ public class Monster : MonoBehaviour
 		}
 	}
 
-	private void Idle()
-	{
-	}
-
 	private void Move()
 	{
-		if (target == null) return;
+		if (_target == null) return;
 
 		_animator.SetBool("isMoving", true);
 		_animator.SetBool("isAttacking", false);
 
 		// Move
-		_agent.destination = target.position;
+		_agent.destination = _target.position;
 
 		// Change State to Attack
-		float distanceToTarget = Vector3.Distance(transform.position, target.position);
+		float distanceToTarget = Vector3.Distance(transform.position, _target.position);
 		if (distanceToTarget < attackRange)
 		{
 			_currentState = State.Attack;
@@ -71,20 +66,20 @@ public class Monster : MonoBehaviour
 
 	private void Attack()
 	{
-		if (target == null) return;
+		if (_target == null) return;
 
 		_animator.SetBool("isMoving", false);
 		_animator.SetBool("isAttacking", true);
 
 		// Check attackCooldown
-		if (Time.time - _lastAttackTime >= attackCooldown)
+		if (_attackTimer >= attackCooldown)
 		{
 			// Attack
-			_lastAttackTime = Time.time;
+			_attackTimer = 0;
 			GameUI.Instance.Attacked();
 		}
 
-		float distanceToTarget = Vector3.Distance(transform.position, target.position);
+		float distanceToTarget = Vector3.Distance(transform.position, _target.position);
 		if (distanceToTarget > attackRange)
 		{
 			_currentState = State.Move;

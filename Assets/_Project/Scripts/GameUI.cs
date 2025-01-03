@@ -19,12 +19,12 @@ public class GameUI : SingletonManager<GameUI>
 	public Sprite emptyHeartSprite;
 
 	private int _curHeartCount;
-	private int _preHeartCount;
+
+	public ParticleSystem particle;
 
 	private void Start()
 	{
 		_curHeartCount = heartCount;
-		_preHeartCount = heartCount;
 
 		hearts = new List<GameObject>(_curHeartCount);
 		for (int i = 0; i < _curHeartCount; i++)
@@ -36,19 +36,16 @@ public class GameUI : SingletonManager<GameUI>
 
 	private void Update()
 	{
-		DieCheck();
-		if (_preHeartCount != _curHeartCount)
-		{
-			hearts[_curHeartCount].GetComponent<Image>().sprite = emptyHeartSprite;
-		}
-
 		scoreText.text = score.ToString();
-		_preHeartCount = _curHeartCount;
 	}
 
 	public void Attacked()
 	{
 		_curHeartCount--;
+		particle.gameObject.SetActive(true);
+		particle.Play();
+		DieCheck();
+		hearts[_curHeartCount].GetComponent<Image>().sprite = emptyHeartSprite;
 	}
 
 	private void DieCheck()

@@ -11,9 +11,17 @@ public class Gun : MonoBehaviour
 	public GameObject bulletPrefab;
 	public Transform startBulletPos;
 
+	public float shotInterval = 1f;
+	private float shotTimer;
+
 	private void Awake()
 	{
 		ABC = GetComponentInParent<ActionBasedController>();
+	}
+
+	private void Update()
+	{
+		shotTimer += Time.deltaTime;
 	}
 
 	private void OnEnable()
@@ -30,9 +38,10 @@ public class Gun : MonoBehaviour
 
 	private void TriggerAction(InputAction.CallbackContext context)
 	{
-		if (context.performed)
+		if (context.performed && shotTimer >= shotInterval)
 		{
 			Instantiate(bulletPrefab, startBulletPos.position, startBulletPos.rotation);
+			shotTimer = 0;
 		}
 	}
 }

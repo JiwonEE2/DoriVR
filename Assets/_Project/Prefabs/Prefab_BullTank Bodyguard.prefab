@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14758d6cb5dcf0c48b7eb57b405d5835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  attackRange: 2
+  moveSpeed: 8
+  attackRange: 3
   attackCooldown: 2
 --- !u!136 &3412334449891841805
 CapsuleCollider:
