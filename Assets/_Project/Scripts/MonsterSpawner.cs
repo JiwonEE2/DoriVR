@@ -52,7 +52,7 @@ public class MonsterSpawner : MonoBehaviour
 
 	private void SpawnMonster(GameObject monsterPrefab)
 	{
-		if (_spawnedMonsters.Count < 20)
+		if (_spawnedMonsters.Count < 50)
 		{
 			GameObject monster = Instantiate(monsterPrefab, transform);
 			_spawnedMonsters.Add(monster);
