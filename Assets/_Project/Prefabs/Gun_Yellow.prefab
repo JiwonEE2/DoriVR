@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8551389962769033305, guid: c403213bec898e448b8b9e3b1a858d25, type: 3}
   startBulletPos: {fileID: 5527656440917796738}
-  shotInterval: 1
+  shotInterval: 0.2
 --- !u!1 &2401046730522673758
 GameObject:
   m_ObjectHideFlags: 0

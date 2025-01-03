@@ -23,7 +23,8 @@ public class Bullet : MonoBehaviour
 		if (other.CompareTag("Monster"))
 		{
 			GameUI.Instance.score++;
-			Destroy(other.gameObject);
+			MonsterSpawner spawner = FindObjectOfType<MonsterSpawner>();
+			spawner.DieMonster(other.gameObject);
 		}
 
 		Destroy(gameObject);

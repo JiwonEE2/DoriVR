@@ -14,6 +14,8 @@ public class MonsterSpawner : MonoBehaviour
 	public float spawnRateUpTime = 5f;
 	private float _timer;
 
+	public List<GameObject> _spawnedMonsters = new List<GameObject>();
+
 	private void Start()
 	{
 		StartCoroutine(SpawnMonster1Coroutine());
@@ -50,7 +52,17 @@ public class MonsterSpawner : MonoBehaviour
 
 	private void SpawnMonster(GameObject monsterPrefab)
 	{
-		GameObject monster = Instantiate(monsterPrefab, transform);
+		if (_spawnedMonsters.Count < 20)
+		{
+			GameObject monster = Instantiate(monsterPrefab, transform);
+			_spawnedMonsters.Add(monster);
+		}
+	}
+
+	public void DieMonster(GameObject monsterPrefab)
+	{
+		_spawnedMonsters.Remove(monsterPrefab);
+		Destroy(monsterPrefab);
 	}
 
 	private void SpawnRateDown()
